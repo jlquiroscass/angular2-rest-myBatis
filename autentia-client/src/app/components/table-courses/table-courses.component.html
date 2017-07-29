@@ -1,0 +1,52 @@
+
+<section class="main" *ngIf="courses.length > 0" >
+	<div>
+	<img class="imageCenter" src="../../../assets/images/autentia.png">	
+		<div class="centerPanel">
+		
+		
+	<span  style = "float: right;" *ngIf="courses.length > 0">
+		<span class="course-count"><strong>{{courses.length}}</strong>
+			{{courses.length == 1 ? 'curso' : 'cursos'}} en nuestra base de datos</span>
+	</span>
+
+	<table class="tableCourses">
+		<tr>
+			<th class="tableHeader"><a (click)="orderName()">Titulo</a></th>
+			<th class="tableHeader"><a (click)="orderProfessor()">Profesor</a></th>
+			<th class="tableHeader"><a (click)="orderLevel()">Nivel</a></th>
+			<th class="tableHeader"><a (click)="orderHours()">Horas</a></th>
+		</tr>
+		<tr *ngFor="let item of pagedItems">
+
+			<td class="elementRow">{{item.name}}</td>
+			<td class="elementRow">{{item.professor.firstName + ' ' +
+				item.professor.lastName}}</td>
+			<td class="elementRow">{{item.level}}</td>
+			<td class="elementRow">{{item.numHours}}</td>
+		</tr>
+	</table>
+
+	<!-- pager -->
+	<div style="text-align: center;  display: table-row;">
+	<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+		<li [ngClass]="{disabled:pager.currentPage === 1}"><a
+			(click)="setPage(1)">Primera</a></li>
+		<li [ngClass]="{disabled:pager.currentPage === 1}"><a
+			(click)="setPage(pager.currentPage - 1)">Anterior</a></li>
+		<li *ngFor="let page of pager.pages"
+			[ngClass]="{active:pager.currentPage === page}"><a
+			(click)="setPage(page)">{{page}}</a></li>
+		<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+			<a (click)="setPage(pager.currentPage + 1)">Siguiente</a>
+		</li>
+		<li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+			<a (click)="setPage(pager.totalPages)">Ultima</a>
+		</li>
+	</ul>
+	</div>
+	<a [routerLink]="['../add']"><div  class="boton" ><span class="textBoton">Nuevo Curso</span>	</div></a>
+	</div>
+		</div>
+	
+</section>

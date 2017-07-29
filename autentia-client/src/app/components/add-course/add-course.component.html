@@ -1,0 +1,36 @@
+
+<section class="main">
+	<img class="imageCenter" src="../../../assets/images/autentia.png">	
+	<div class="centerPanel">
+	<form [formGroup]="complexForm"
+        (ngSubmit)="onSubmit(complexForm.value)"  >
+	<h1> Agrega un nuevo curso</h1>
+
+   <input type="checkbox" text="Active" formControlName="active" ngModel placeholder="Active"> <span class="spanTxt"> Activo</span>
+    <br>
+    <span class="spanTxt">Nombre del curso</span>
+	<input class="inputClass" type="text" placeholder="Nombre del curso...."  formControlName="name" ngModel/>
+	<span class="spanTxt">Nivel del curso</span>
+	<select class="inputClass" id="areaIdeaSelect" formControlName="level" ngModel placeholder="Nombre del curso...." >
+		<option value="basic">Basico</option>
+		<option value="intermediate">Intermedio</option>
+		<option value="expert">Experto</option>
+	</select>
+	<span class="spanTxt">Profesor</span>
+	<select class="inputClass" id="areaIdeaSelect"  ngModel formControlName="professor_id" >
+		<option *ngFor="let pow of professors" [value]="pow.id">{{pow.firstName + ' ' + pow.lastName}}</option>
+	</select>
+	 
+	<span class="spanTxt">Horas lectivas</span>
+	<input class="inputClass" type="text" placeholder="Horas del curso...." formControlName="numHours" ngModel/>
+	
+	<span class="spanTxt">Archivo Adjunto</span>
+	<div class="inputClass">
+	    <input type="file" (change)="onChangeDoc($event)"/>
+	  </div>
+
+	<button class="boton" type="submit"  [disabled]="!complexForm.valid" ><span class="textBoton">Agregar nuevo curso</span></button>
+	</form>
+	<a href="#" [routerLink]="['../courses']"><div  class="boton" ><span class="textBoton">Lista de Cursos</span></div></a>
+	</div>
+</section>
