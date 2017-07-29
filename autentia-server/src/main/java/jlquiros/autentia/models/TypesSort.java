@@ -1,0 +1,5 @@
+package jlquiros.autentia.models;
+
+public enum TypesSort {
+	NAMEASC,NAMEDESC,LEVELASC,LEVELDESC,NUMHOURSASC,NUMHOURSDESC,PROFASC,PROFDESC
+}
